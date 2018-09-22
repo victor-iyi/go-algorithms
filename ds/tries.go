@@ -45,7 +45,7 @@ func (t *Trie) Add(word string) {
 	node := t.root
 
 	// Loop through each character in the given word.
-	for _, char := range word {
+	for _, char := range strings.ToUpper(word) {
 		// Has char been found in the Trie?
 		var found bool
 
@@ -98,7 +98,7 @@ func (t *Trie) Find(prefix string) (bool, uint8) {
 		return false, 0
 	}
 
-	for _, char := range prefix {
+	for _, char := range strings.ToUpper(prefix) {
 		var found bool
 		for _, child := range node.Children {
 			if child.Char == char {
