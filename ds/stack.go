@@ -5,7 +5,7 @@ import "errors"
 // StackData contains data in a stack.
 type StackData float64
 
-// Stack is a data structure that abides to the Last In Last Out (LIFO) lingo.
+// Stack is a data structure that abides to the Last In First Out (LIFO) lingo.
 type Stack struct {
 	data  []StackData // Contains stack data.
 	count uint        // An internal element count maintained by stack.
@@ -28,7 +28,7 @@ func (s *Stack) Peek() (StackData, error) {
 // Pop removes the last element from the stack.
 func (s *Stack) Pop() {
 	if s.count == 0 {
-
+		// delete(s.data, s.count)
 	}
 	// Decrement count.
 	s.count--

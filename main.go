@@ -10,12 +10,12 @@ func main() {
 	root := ds.NewTrieNode('*')
 	trie := ds.NewTrie(root)
 
-	trie.Add("victor")
-	trie.Add("victoria")
+	trie.AddAll("victor victoria victory victories")
 	trie.Add("bell")
 	trie.Add("base")
 	trie.Add("beat")
 	trie.Add("bellman")
+	trie.AddAll("programming terminal commit async escape milk terminate program")
 
 	ds.Print(root)
 

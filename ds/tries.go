@@ -1,6 +1,9 @@
 package ds
 
-import "fmt"
+import (
+	"fmt"
+	"strings"
+)
 
 // TrieNode represents each node in a Trie.
 type TrieNode struct {
@@ -20,6 +23,11 @@ func (tn *TrieNode) AddChild(node *TrieNode) {
 	tn.Children = append(tn.Children, node)
 }
 
+// Empty return false if node has no children.
+func (tn *TrieNode) Empty() bool {
+	return (len(tn.Children) <= 0)
+}
+
 // Trie is a tree data structures that consist of nodes of characters
 // which forms a valid word as you traverse down the tree.
 type Trie struct {
@@ -33,41 +41,59 @@ func NewTrie(node *TrieNode) *Trie {
 
 // Add adds a new Node to a the trie.
 func (t *Trie) Add(word string) {
+	// Start at the root node.
 	node := t.root
 
+	// Loop through each character in the given word.
 	for _, char := range word {
+		// Has char been found in the Trie?
 		var found bool
 
+		// Go through current node's children.
 		for _, child := range node.Children {
+			// If the current `node.char` == `char`,
+			// increment node count
 			if child.Char == char {
+				// Found character in the Trie.
 				found = true
+
+				// Increment possible words counter & update next node.
 				node.Count++
 				node = child
+
 				break
 			}
 		}
 
 		// If the char was not found.
 		if !found {
+			// Add child node to current node.
 			newNode := NewTrieNode(char)
 			node.AddChild(newNode)
+
+			// Update the node.
 			node = newNode
 		}
 	}
 
+	// After adding all characters to the Trie, mark the last char as a complete word.
 	node.IsWord = true
 }
 
 // AddAll adds multiple words in a sentence to the trie.
 func (t *Trie) AddAll(sentence string) {
-
+	for _, word := range strings.Fields(sentence) {
+		t.Add(word)
+	}
 }
 
 // Find returns whether or not a prefix has been found,
 // and also how many words it can make if found.
 func (t *Trie) Find(prefix string) (bool, uint8) {
+	// Start from the root node.
 	node := t.root
 
+	// Return false if there's no children in root node.
 	if len(node.Children) < 1 {
 		return false, 0
 	}
