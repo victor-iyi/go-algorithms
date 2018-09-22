@@ -7,7 +7,7 @@ type StackData float64
 
 // Stack is a data structure that abides to the Last In Last Out (LIFO) lingo.
 type Stack struct {
-	data  []StackData // Contains stak data.
+	data  []StackData // Contains stack data.
 	count uint        // An internal element count maintained by stack.
 }
 
