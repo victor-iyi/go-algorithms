@@ -1,4 +1,3 @@
-// Package ds implements Stack data structure in Go.
 package ds
 
 // Stack is a data structure that abides to the Last In Last Out (LIFO) lingo.
