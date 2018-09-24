@@ -57,8 +57,8 @@ func (s *Stack) Push(data StackData) {
 }
 
 // Count returns the number of elements in a stack.
-func (s *Stack) Count() uint {
-	return s.count
+func (s *Stack) Count() int {
+	return int(s.count)
 }
 
 // Empty indicates whether the stack is empty or not.

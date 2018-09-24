@@ -17,6 +17,12 @@ func main() {
 	// Stack example.
 	stack := ds.NewStack()
 	usingStack(stack)
+
+	divider()
+
+	// Queue example.
+	queue := ds.NewQueue()
+	usingQueue(queue)
 }
 
 func divider(count ...int) {
@@ -56,13 +62,54 @@ func usingStack(s *ds.Stack) {
 
 	// Pop last element from stack.
 	var pop ds.StackData
-	for i := 0; i < int(s.Count()); i++ {
+	for i := 0; i < s.Count(); i++ {
 		pop, err = s.Pop()
 
 		if err != nil {
 			fmt.Printf("Cannot pop [%s]\n", err)
 		} else {
 			fmt.Println("s.Pop() =", pop)
+		}
+	}
+
+}
+
+func usingQueue(q *ds.Queue) {
+	// Push elements to the queue.
+	q.Push(3.14)
+	q.Push(13.)
+	q.Push(.21)
+	q.Push(526.1)
+	q.Push(190.21)
+
+	// Print empty status.
+	fmt.Print("Queue is ")
+	if q.Empty() {
+		fmt.Println("empty")
+		return // End the function if queue is empty.
+	}
+	fmt.Println("not empty")
+
+	// Number of elements contained in a queue.
+	fmt.Printf("Queue contains: %d element(s)\n", q.Count())
+
+	// Peek into the queue.
+	peek, err := q.Peek()
+	if err != nil {
+		fmt.Printf("Cannot peek [%s]\n", err)
+	} else {
+		fmt.Println("q.Peek() =", peek)
+	}
+
+	// Pop last element from queue.
+	var pop ds.QueueData
+	for i := 0; i < q.Count(); i++ {
+		pop, err = q.Pop()
+
+		if err != nil {
+			fmt.Printf("Cannot pop [%s]\n", err)
+		} else {
+			fmt.Println("q.Pop() =", pop)
 		}
 	}
 
