@@ -1,8 +1,8 @@
 package ds
 
-// DataStructure interface contains common method signatures
+// LinearDS interface contains common method signatures
 // for implemented data structures.
-type DataStructure interface {
+type LinearDS interface {
 	Data
 	Push(data Data)      // Adding elements to a data structure.
 	Peek() (Data, error) // Returns the first element of a data structure.

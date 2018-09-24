@@ -16,13 +16,13 @@ func main() {
 
 	// Stack example.
 	stack := ds.NewStack()
-	usingDataStructure("Stack", stack)
+	usingLinearDS("Stack", stack)
 
 	divider()
 
 	// Queue example.
 	queue := ds.NewQueue()
-	usingDataStructure("Queue", queue)
+	usingLinearDS("Queue", queue)
 }
 
 func divider(count ...int) {
@@ -33,27 +33,27 @@ func divider(count ...int) {
 	fmt.Printf("\n%s\n\n", strings.Repeat("=", count[0]))
 }
 
-func usingDataStructure(name string, dataStructure ds.DataStructure) {
+func usingLinearDS(name string, linear ds.LinearDS) {
 	// Push elements to the dataStructure.
-	dataStructure.Push(3.14)
-	dataStructure.Push(13.)
-	dataStructure.Push(.21)
-	dataStructure.Push(526.1)
-	dataStructure.Push(190.21)
+	linear.Push(3.14)
+	linear.Push(13.)
+	linear.Push(.21)
+	linear.Push(526.1)
+	linear.Push(190.21)
 
 	// Print empty status.
 	fmt.Printf("%s is ", name)
-	if dataStructure.Empty() {
+	if linear.Empty() {
 		fmt.Println("empty")
 		return // End the function if dataStructure is empty.
 	}
 	fmt.Println("not empty")
 
 	// Number of elements contained in a dataStructure.
-	fmt.Printf("%s contains: %d element(s)\n", name, dataStructure.Count())
+	fmt.Printf("%s contains: %d element(s)\n", name, linear.Count())
 
 	// Peek into the dataStructure.
-	peek, err := dataStructure.Peek()
+	peek, err := linear.Peek()
 	if err != nil {
 		fmt.Printf("Cannot peek [%s]\n", err)
 	} else {
@@ -61,8 +61,8 @@ func usingDataStructure(name string, dataStructure ds.DataStructure) {
 	}
 
 	// Pop last element from stack.
-	for i := 0; i < dataStructure.Count(); i++ {
-		pop, err := dataStructure.Pop()
+	for i := 0; i < linear.Count(); i++ {
+		pop, err := linear.Pop()
 
 		if err != nil {
 			fmt.Printf("Cannot pop [%s]\n", err)
