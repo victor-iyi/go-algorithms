@@ -18,20 +18,33 @@ func NewStack() *Stack {
 
 // Peek returns the last element in the stack.
 func (s *Stack) Peek() (StackData, error) {
-	if s.count == 0 {
+	if s.Empty() {
 		return 0, errors.New("StackError: Stack is empty")
 	}
 
-	return s.data[s.count], nil
+	return s.data[s.count-1], nil
 }
 
 // Pop removes the last element from the stack.
-func (s *Stack) Pop() {
-	if s.count == 0 {
-		// delete(s.data, s.count)
+func (s *Stack) Pop() (StackData, error) {
+	// data to be returned.
+	var data StackData
+
+	// No elements in the stack.
+	if s.Empty() {
+		return data, errors.New("StackError: No element in the stack")
 	}
+
+	// Get the last element in the slice.
+	data, _ = s.Peek()
+
+	// Delete the last element from the stack.
+	s.data = s.data[:s.count]
+
 	// Decrement count.
 	s.count--
+
+	return data, nil
 }
 
 // Push adds a new element to the end of a stack.

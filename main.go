@@ -7,22 +7,45 @@ import (
 )
 
 func main() {
-	root := ds.NewTrieNode('*')
-	trie := ds.NewTrie(root)
+	stack := ds.NewStack()
+	stack.Push(3.14)
+	stack.Push(13.)
+	stack.Push(.21)
+	stack.Push(526.1)
+	stack.Push(190.21)
+	printDetails(stack)
+}
 
-	trie.AddAll("victor victoria victory victories")
-	trie.Add("bell")
-	trie.Add("base")
-	trie.Add("beat")
-	trie.Add("bellman")
-	trie.AddAll("programming terminal commit async escape milk terminate program")
+func printDetails(s *ds.Stack) {
+	// Print empty status.
+	fmt.Print("Stack is ")
+	if s.Empty() {
+		fmt.Println("empty")
+		return // End the function if stack is empty.
+	}
+	fmt.Println("not empty")
 
-	ds.Print(root)
+	// Number of elements contained in a stack.
+	fmt.Printf("Stack contains: %d element(s)\n", s.Count())
 
-	hasVic, countVic := trie.Find("vic")
-	hasProg := trie.Contains("prog")
+	// Peek into the stack.
+	peek, err := s.Peek()
+	if err != nil {
+		fmt.Printf("Cannot peek [%s]\n", err)
+	} else {
+		fmt.Println("s.Peek() =", peek)
+	}
 
-	fmt.Printf("root.Char = %c\n", root.Char)
-	fmt.Printf("hasVic = %t\tcountVic = %d\n", hasVic, countVic)
-	fmt.Printf("hasProg = %t\n", hasProg)
+	// Pop last element from stack.
+	var pop ds.StackData
+	for i := 0; i < int(s.Count()); i++ {
+		pop, err = s.Pop()
+
+		if err != nil {
+			fmt.Printf("Cannot pop [%s]\n", err)
+		} else {
+			fmt.Println("s.Pop() =", pop)
+		}
+	}
+
 }
