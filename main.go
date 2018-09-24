@@ -2,21 +2,39 @@ package main
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/victor-iyiola/go-algorithms/ds"
 )
 
 func main() {
+	// Trie example.
+	trie := ds.NewTrieFromChar('*')
+	usingTrie(trie)
+
+	divider()
+
+	// Stack example.
 	stack := ds.NewStack()
-	stack.Push(3.14)
-	stack.Push(13.)
-	stack.Push(.21)
-	stack.Push(526.1)
-	stack.Push(190.21)
-	printDetails(stack)
+	usingStack(stack)
 }
 
-func printDetails(s *ds.Stack) {
+func divider(count ...int) {
+	if count == nil {
+		count = append(count, 50)
+	}
+
+	fmt.Println(strings.Repeat("=", count[0]))
+}
+
+func usingStack(s *ds.Stack) {
+	// Push elements to the stack.
+	s.Push(3.14)
+	s.Push(13.)
+	s.Push(.21)
+	s.Push(526.1)
+	s.Push(190.21)
+
 	// Print empty status.
 	fmt.Print("Stack is ")
 	if s.Empty() {
@@ -48,4 +66,28 @@ func printDetails(s *ds.Stack) {
 		}
 	}
 
+}
+
+func usingTrie(t *ds.Trie) {
+	// Add single word to the trie.
+	t.Add("bell")
+	t.Add("base")
+	t.Add("beat")
+	t.Add("bellman")
+
+	// Add multiple words to the trie.
+	t.AddAll("victor victoria victory victories")
+	t.AddAll("programming terminal commit async escape milk terminate program")
+
+	// Print trie contents.
+	ds.Print(t.Root)
+
+	// Check occurrence of some word prefix in the trie.
+	hasVic, countVic := t.Find("vic")
+	hasProg := t.Contains("prog")
+
+	// Print results.
+	fmt.Printf("root.Char = %c\n", t.Root.Char)
+	fmt.Printf("hasVic = %t\tcountVic = %d\n", hasVic, countVic)
+	fmt.Printf("hasProg = %t\n", hasProg)
 }

@@ -31,18 +31,25 @@ func (tn *TrieNode) Empty() bool {
 // Trie is a tree data structures that consist of nodes of characters
 // which forms a valid word as you traverse down the tree.
 type Trie struct {
-	root *TrieNode
+	Root *TrieNode
 }
 
 // NewTrie creates a new trie with initialized root.
 func NewTrie(node *TrieNode) *Trie {
-	return &Trie{root: node}
+	return &Trie{Root: node}
+}
+
+// NewTrieFromChar creates a new trie from root character.
+// It construct a root node under the hood and uses it to
+// create a new trie object that is then returned.
+func NewTrieFromChar(char rune) *Trie {
+	return NewTrie(NewTrieNode(char))
 }
 
 // Add adds a new Node to a the trie.
 func (t *Trie) Add(word string) {
 	// Start at the root node.
-	node := t.root
+	node := t.Root
 
 	// Loop through each character in the given word.
 	for _, char := range strings.ToUpper(word) {
@@ -91,7 +98,7 @@ func (t *Trie) AddAll(sentence string) {
 // and also how many words it can make if found.
 func (t *Trie) Find(prefix string) (bool, uint8) {
 	// Start from the root node.
-	node := t.root
+	node := t.Root
 
 	// Return false if there's no children in root node.
 	if len(node.Children) < 1 {
