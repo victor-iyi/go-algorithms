@@ -46,8 +46,8 @@ func NewTrieFromChar(char rune) *Trie {
 	return NewTrie(NewTrieNode(char))
 }
 
-// Add adds a new Node to a the trie.
-func (t *Trie) Add(word string) {
+// Push adds a new Node to a the trie.
+func (t *Trie) Push(word string) {
 	// Start at the root node.
 	node := t.Root
 
@@ -90,7 +90,7 @@ func (t *Trie) Add(word string) {
 // AddAll adds multiple words in a sentence to the trie.
 func (t *Trie) AddAll(sentence string) {
 	for _, word := range strings.Fields(sentence) {
-		t.Add(word)
+		t.Push(word)
 	}
 }
 

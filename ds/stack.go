@@ -2,13 +2,13 @@ package ds
 
 import "errors"
 
-// StackData contains data in a stack.
-type StackData float64
+// Data contains data in a stack.
+// type StackData float64
 
 // Stack is a data structure that abides to the Last In First Out (LIFO) lingo.
 type Stack struct {
-	data  []StackData // Contains stack data.
-	count uint        // An internal element count maintained by stack.
+	data  []Data // Contains stack data.
+	count uint   // An internal element count maintained by stack.
 }
 
 // NewStack creates a new instance of a stack.
@@ -17,7 +17,7 @@ func NewStack() *Stack {
 }
 
 // Peek returns the last element in the stack.
-func (s *Stack) Peek() (StackData, error) {
+func (s *Stack) Peek() (Data, error) {
 	if s.Empty() {
 		return 0, errors.New("StackError: Stack is empty")
 	}
@@ -26,9 +26,9 @@ func (s *Stack) Peek() (StackData, error) {
 }
 
 // Pop removes the last element from the stack.
-func (s *Stack) Pop() (StackData, error) {
+func (s *Stack) Pop() (Data, error) {
 	// data to be returned.
-	var data StackData
+	var data Data
 
 	// No elements in the stack.
 	if s.Empty() {
@@ -48,7 +48,7 @@ func (s *Stack) Pop() (StackData, error) {
 }
 
 // Push adds a new element to the end of a stack.
-func (s *Stack) Push(data StackData) {
+func (s *Stack) Push(data Data) {
 	// Adds new data into the stack.
 	s.data = append(s.data, data)
 

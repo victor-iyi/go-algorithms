@@ -1,13 +1,16 @@
 package ds
 
-import "errors"
+import (
+	"errors"
+	// "github.com/victor-iyiola/go-algorithms/ds"
+)
 
-// QueueData is the data type for elements inside Queue.
-type QueueData float64
+// Data is the data type for elements inside Queue.
+// type QueueData float64
 
 // Queue data structure obeys the First In First Out (FIFO) lingo.
 type Queue struct {
-	data  []QueueData
+	data  []Data
 	count uint
 }
 
@@ -17,13 +20,13 @@ func NewQueue() *Queue {
 }
 
 // Push adds new element to the back of a queue.
-func (q *Queue) Push(data QueueData) {
+func (q *Queue) Push(data Data) {
 	q.data = append(q.data, data)
 	q.count = uint(len(q.data))
 }
 
 // Peek returns the first element in the Queue.
-func (q *Queue) Peek() (QueueData, error) {
+func (q *Queue) Peek() (Data, error) {
 	if q.count > 0 {
 		return q.data[0], nil
 	}
@@ -32,9 +35,9 @@ func (q *Queue) Peek() (QueueData, error) {
 }
 
 // Pop removes the first element from the Queue.
-func (q *Queue) Pop() (QueueData, error) {
+func (q *Queue) Pop() (Data, error) {
 	// data to be returned.
-	var data QueueData
+	var data Data
 
 	// No elements in the queue.
 	if q.Empty() {
