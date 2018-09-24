@@ -24,7 +24,7 @@ func divider(count ...int) {
 		count = append(count, 50)
 	}
 
-	fmt.Println(strings.Repeat("=", count[0]))
+	fmt.Printf("\n%s\n\n", strings.Repeat("=", count[0]))
 }
 
 func usingStack(s *ds.Stack) {
